@@ -62,7 +62,17 @@
             word-break: break-all;
             text-align: center;
         }
-        
+        /* Reset básico para estilos molestos del navegador */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
         /* Modal responsive mejorado */
         .modal-content {
             max-width: 90vw;
@@ -359,8 +369,8 @@
         }
         /* Ajuste para ampliar el campo de Número de Lote */
         #lote, #editLote {
-            width: 78.5%;
-            height: 56.5%;
+            width: 100%;
+            height: 100%;
             
             padding: 0.625rem 2.5rem;
         } 
@@ -533,7 +543,7 @@
                                         <option value="Silo 1">Silo 1</option>
                                         <option value="Silo 2">Silo 2</option>
                                         <option value="Silo 3">Silo 3</option>
-                                        <option value="Silo 4">Silo 4</option>
+                                        <option value="Silo 4">Silo 4</option>                               
                                         <option value="Silo 5">Silo 5</option>
                                         <option value="Tolva">Tolva</option>
                                     </select>
@@ -601,7 +611,7 @@
                                 <div class="text-2xl font-bold text-gray-800" id="silos-in-use">0/6</div>
                             </div>
                             <div class="bg-purple-50 p-4 rounded-lg border border-purple-100 col-span-2">
-                                <div class="text-purple-600 text-sm font-medium mb-1">Último Registro</div>
+                                <div class="text-purple-600 text-sm font-medium mb-1">Último Registro</div>s
                                 <div class="text-md font-medium text-gray-800 truncate" id="last-record">N/A</div>
                             </div>
                         </div>
@@ -764,7 +774,7 @@
                                 <option value="Silo 3">Silo 3</option>
                                 <option value="Silo 4">Silo 4</option>
                                 <option value="Silo 5">Silo 5</option>
-                                <option value="Silo 6">Silo 6</option>
+                                <option value="Tolva">Tolva</option>
                             </select>
                             <i class="fas fa-chevron-down select-icon"></i>
                         </div>
@@ -1218,8 +1228,8 @@
                     registros[editingIndex].maquina = maquina;
                     registros[editingIndex].tubo = tubo;
                     
-                    // Actualizar fecha de modificación
-                    registros[editingIndex].fechaModificacion = new Date().toLocaleString('es-ES', { 
+                    // Actualizar fecha y hora de modificación
+                    registros[editingIndex].fecha = new Date().toLocaleString('es-ES', { 
                         day: '2-digit',
                         month: '2-digit',
                         year: 'numeric',
@@ -1227,6 +1237,7 @@
                         minute: '2-digit',
                         second: '2-digit'
                     });
+                    registros[editingIndex].timestamp = new Date().getTime();
                     
                     guardarRegistros();
                     actualizarTabla();
